@@ -90,7 +90,6 @@ var upperCasedCharacters = [
 
 var charsArray;
 
-
 // Function to prompt user for password options
 function getPasswordOptions() {
   charsArray = [];
@@ -110,17 +109,20 @@ function getRandom(arr) {
 
 // Function to generate password with user input
 function generatePassword() {
-  var passwordIter = ""
+  var passwordValue = ""
   var digitsAmount = getPasswordOptions()
-  
-  if (newChars.length == 1) {return("Whoops! You need to choose at least one character type")};
-  if (digitsAmount < 10 || digitsAmount > 64) {return ("Whoops! Your password length must have at least 10 chars and no more than 64")};
+  if (charsArray.length == 0) {
+    alert("Whoops! You need to choose at least one character type")
+    return("Whoops! You need to choose at least one character type")
+  };
+  if (digitsAmount < 10 || digitsAmount > 64) {
+    alert("Whoops! Your password length must have at least 10 chars and no more than 64")
+    return("Whoops! Your password length must have at least 10 chars and no more than 64")
+  };
 
-  for (var i = 0; i < digitsAmount; i++) {
-    passwordIter = passwordIter + getRandom(charsArray)
-  }
+  for (var i = 0; i < digitsAmount; i++) {passwordValue = passwordValue + getRandom(charsArray)}
 
-  return(passwordIter)
+  return(passwordValue)
 
 }
 
