@@ -95,11 +95,11 @@ var charsArray;
 function getPasswordOptions() {
   charsArray = [];
 
-  if (confirm("Would you like to include lower case characters?")) { charsArray = charsArray.concat(lowerCasedCharacters)};
-  if (confirm("Would you like to include upper case characters?")) { charsArray = charsArray.concat(upperCasedCharacters)};
-  if (confirm("Would you like to include numneric characters?")) { charsArray = charsArray.concat(numericCharacters)};
-  if (confirm("Would you like to include special characters?")) { charsArray = charsArray.concat(specialCharacters)};
-  return(prompt("And finally, how many digits would you like in your password?"));
+  if (confirm("Would you like to include lower case characters?")) {charsArray = charsArray.concat(lowerCasedCharacters)};
+  if (confirm("Would you like to include upper case characters?")) {charsArray = charsArray.concat(upperCasedCharacters)};
+  if (confirm("Would you like to include numneric characters?")) {charsArray = charsArray.concat(numericCharacters)};
+  if (confirm("Would you like to include special characters?")) {charsArray = charsArray.concat(specialCharacters)};
+  return(prompt("And finally, how many long would you like your password to be?"));
 
 }
 
@@ -113,7 +113,8 @@ function generatePassword() {
   var passwordIter = ""
   var digitsAmount = getPasswordOptions()
   
-  //where we will insert error checking e.g. newChars ==0, or amountOfDigits (the return value) is too low or high
+  if (newChars.length == 1) {return("Whoops! You need to choose at least one character type")};
+  if (digitsAmount < 10 || digitsAmount > 64) {return ("Whoops! Your password length must have at least 10 chars and no more than 64")};
 
   for (var i = 0; i < digitsAmount; i++) {
     passwordIter = passwordIter + getRandom(charsArray)
