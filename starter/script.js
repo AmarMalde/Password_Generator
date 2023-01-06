@@ -88,19 +88,18 @@ var upperCasedCharacters = [
   'Z'
 ];
 
-var newChars
+var charsArray;
 
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  newChars = [];
-  var amountOfDigits = prompt("How many digits would you like in your password?");
+  charsArray = [];
 
-  if (confirm("Would you like to include lower case characters?")) { newChars = newChars.concat(lowerCasedCharacters)}
-  if (confirm("Would you like to include upper case characters?")) { newChars = newChars.concat(upperCasedCharacters)}
-  if (confirm("Would you like to include numneric characters?")) { newChars = newChars.concat(numericCharacters)}
-  if (confirm("Would you like to include special characters?")) { newChars = newChars.concat(specialCharacters)}
-  return(amountOfDigits)
+  if (confirm("Would you like to include lower case characters?")) { charsArray = charsArray.concat(lowerCasedCharacters)};
+  if (confirm("Would you like to include upper case characters?")) { charsArray = charsArray.concat(upperCasedCharacters)};
+  if (confirm("Would you like to include numneric characters?")) { charsArray = charsArray.concat(numericCharacters)};
+  if (confirm("Would you like to include special characters?")) { charsArray = charsArray.concat(specialCharacters)};
+  return(prompt("And finally, how many digits would you like in your password?"));
 
 }
 
@@ -111,6 +110,16 @@ function getRandom(arr) {
 
 // Function to generate password with user input
 function generatePassword() {
+  var passwordIter = ""
+  var digitsAmount = getPasswordOptions()
+  
+  //where we will insert error checking e.g. newChars ==0, or amountOfDigits (the return value) is too low or high
+
+  for (var i = 0; i < digitsAmount; i++) {
+    passwordIter = passwordIter + getRandom(charsArray)
+  }
+
+  return(passwordIter)
 
 }
 
