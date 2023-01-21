@@ -94,6 +94,9 @@ var charsArray;
 // passwordValue have the final passwordVales added to it.
 var passwordValue;
 
+// passwordValue have the final passwordVales added to it - to deduct from the value given to us by the user. This is part of ensuring that one of each 
+var passwordValueDeductions = 0
+
 // Function to prompt user for password options
 function getPasswordOptions() {
   // setting charsArray to empty. This is important if we want to generate more than one password effectively
@@ -122,7 +125,7 @@ function getPasswordOptions() {
   };
 
   // This function will return the amount of digits the user would like. 
-  // the returned value will be utilised later when generate the full password
+  // the returned value will be utilised later when generating the full password
   return(prompt("And finally, how many long would you like your password to be?"));
 
 }
@@ -150,6 +153,9 @@ function generatePassword() {
     alert("Whoops! Your password length must have at least 10 chars and no more than 64");
     return("Whoops! Your password length must have at least 10 chars and no more than 64");
   };
+
+  //deduct the number of digits already added to the password
+  digitsAmount = digitsAmount - passwordValue.length
 
   // using digitsAmount as a limit the for loop will add a random char to the array using getRandom()
   for (var i = 0; i < digitsAmount; i++) {passwordValue = passwordValue + getRandom(charsArray)}
